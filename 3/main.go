@@ -125,7 +125,7 @@ func main() {
 
 	log.Println("=================== JSON->HASH ======================")
 
-	// Преобразуем структуру в хеш и сохраняем все поля
+	// Преобразуем структуру в map и сохраняем все поля
 	bikeFields := map[string]interface{}{
 		"model":          bike1.Model,
 		"brand":          bike1.Brand,
@@ -182,5 +182,6 @@ func main() {
 	fmt.Printf("Модель: %s\n", model)
 	fmt.Printf("Бренд: %s\n", brand)
 
-	fmt.Println("===================Exit===========================")
+
+	fmt.Println("=================== Exit ===========================")
 }
