@@ -6,3 +6,4 @@
 - 4 - Redis CRUD JSON with HASH example
 - 5 - Redis examples
 - 6 - Redis testing example
+- 7 - Redis Stream example
