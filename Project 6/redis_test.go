@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -142,4 +143,100 @@ func TestHash(t *testing.T) {
 	assert.Equal(t, "eko@example.com", user["email"])
 
 	client.Del(ctx, "user:1")
+}
+
+func TestGeoPoint(t *testing.T) {
+	client.GeoAdd(ctx, "sellers", &redis.GeoLocation{
+		Name:      "Toko A",
+		Longitude: 106.818489,
+		Latitude:  -6.178966,
+	})
+	client.GeoAdd(ctx, "sellers", &redis.GeoLocation{
+		Name:      "Toko B",
+		Longitude: 106.821568,
+		Latitude:  -6.180662,
+	})
+
+	distance := client.GeoDist(ctx, "sellers", "Toko A", "Toko B", "km").Val()
+	assert.Equal(t, 0.3892, distance)
+
+	sellers := client.GeoSearch(ctx, "sellers", &redis.GeoSearchQuery{
+		Longitude:  106.819143,
+		Latitude:   -6.180182,
+		Radius:     5,
+		RadiusUnit: "km",
+	}).Val()
+
+	assert.Equal(t, []string{"Toko A", "Toko B"}, sellers)
+
+	client.Del(ctx, "sellers")
+}
+
+func TestHyperLogLog(t *testing.T) {
+	client.PFAdd(ctx, "visitors", "eko", "kurniawan", "khannedy")
+	client.PFAdd(ctx, "visitors", "eko", "budi", "joko")
+	client.PFAdd(ctx, "visitors", "rully", "budi", "joko")
+
+	total := client.PFCount(ctx, "visitors").Val()
+	assert.Equal(t, int64(6), total)
+
+	client.Del(ctx, "visitors")
+}
+
+func TestPipeline(t *testing.T) {
+	_, err := client.Pipelined(ctx, func(pipeliner redis.Pipeliner) error {
+		pipeliner.SetEx(ctx, "name", "Eko", 5*time.Second)
+		pipeliner.SetEx(ctx, "address", "Indonesia", 5*time.Second)
+		return nil
+	})
+	assert.Nil(t, err)
+
+	assert.Equal(t, "Eko", client.Get(ctx, "name").Val())
+	assert.Equal(t, "Indonesia", client.Get(ctx, "address").Val())
+}
+
+func TestTransaction(t *testing.T) {
+	_, err := client.TxPipelined(ctx, func(pipeliner redis.Pipeliner) error {
+		pipeliner.SetEx(ctx, "name", "Joko", 5*time.Second)
+		pipeliner.SetEx(ctx, "address", "Cirebon", 5*time.Second)
+		return nil
+	})
+	assert.Nil(t, err)
+
+	assert.Equal(t, "Joko", client.Get(ctx, "name").Val())
+	assert.Equal(t, "Cirebon", client.Get(ctx, "address").Val())
+}
+
+func TestCreateConsumerGroup(t *testing.T) {
+	client.XGroupCreate(ctx, "members", "group-1", "0")
+	client.XGroupCreateConsumer(ctx, "members", "group-1", "consumer-1")
+	client.XGroupCreateConsumer(ctx, "members", "group-1", "consumer-2")
+}
+
+func TestSendMessage(t *testing.T) {
+    message := map[string]interface{}{"key1": "value1", "key2": "value2"}
+
+    // Отправляем сообщение в поток "members"
+    client.XAdd(ctx, &redis.XAddArgs{
+        Stream: "members",
+        Values: message,
+    })
+
+}
+
+func TestConsumeStream(t *testing.T) {
+	streams := client.XReadGroup(ctx, &redis.XReadGroupArgs{
+		Group:    "group-1",
+		Consumer: "consumer-1",
+		Streams:  []string{"members", ">"},
+		Count:    2,
+		Block:    10 * time.Second,
+	}).Val()
+
+	for _, stream := range streams {
+		for _, message := range stream.Messages {
+			fmt.Println(message.ID)
+			fmt.Println(message.Values)
+		}
+	}
 }
