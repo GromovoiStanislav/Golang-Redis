@@ -151,4 +151,24 @@ func main() {
 			panic(err)
 		}
 	}
+
+
+	{
+		// Set hash field-values
+		err = client.HSet(ctx, "user:1", map[string]interface{}{
+			"name":  "John Doe",
+			"email": "john@example.com",
+			"age":   25,
+		}).Err()
+		if err != nil {
+			log.Fatal(err)
+		}
+		
+		// Get hash field-values
+		userInfo, err := client.HGetAll(ctx, "user:1").Result()
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println("User Info:", userInfo)
+	}
 }

@@ -93,6 +93,13 @@ func main() {
 	}
 
 
+
+	// Set a key with expiration time
+	err = client.Set(ctx, "temporary", "I will expire soon!", 10*time.Second).Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	// SET key value EX 10 NX
 	set, err := client.SetNX(ctx, "key1", "value", 10*time.Second).Result()
 	fmt.Println("set", set) // set true

@@ -19,6 +19,6 @@ go run example_5.go     # HyperLogLog
 go run example_6.go     # Incr
 go run example_7.go     # Delete keys without a ttl
 go run example_8.go     # Delete keys without a ttl
-go run example_9.go     # PubSub
+go run example_9.go     # Pub/Sub
 go run example_10.go    # Bloom & Cuckoo filters
 ```
