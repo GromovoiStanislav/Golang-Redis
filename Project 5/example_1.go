@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -104,6 +105,29 @@ func main() {
 	res, err := client.Do(ctx, "set", "key3", "value").Result()
 	fmt.Println("res", res) // res OK
 
+
+
+	{
+		type Author struct {
+			Name string `json:"name"`
+			Age int `json:"age"`
+		}
+
+		json, err := json.Marshal(Author{Name: "Elliot", Age: 25})
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		err = client.Set(ctx, "id1234", json, 0).Err()
+		if err != nil {
+			fmt.Println(err)
+		}
+		val, err := client.Get(ctx, "id1234").Result()
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(val)
+	}
 
 
 	// Iterating over keys

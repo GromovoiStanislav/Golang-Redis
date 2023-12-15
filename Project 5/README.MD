@@ -12,7 +12,7 @@ go get github.com/joho/godotenv
 
 ```bash
 go run example_1.go     # String
-go run example_2.go     # Hashe map
+go run example_2.go     # Hash
 go run example_3.go     # list
 go run example_4.go     # Pipeline
 go run example_5.go     # HyperLogLog
