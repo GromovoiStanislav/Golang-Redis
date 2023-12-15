@@ -9,3 +9,4 @@
 - 7 - Redis Stream example
 - 8 - Redis Pub/Sub example
 - 9 - Redis simple example
+- 10 - Redis Pub/Sub simple examples
