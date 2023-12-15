@@ -8,3 +8,4 @@
 - 6 - Redis testing example
 - 7 - Redis Stream example
 - 8 - Redis Pub/Sub example
+- 9 - Redis simple example
