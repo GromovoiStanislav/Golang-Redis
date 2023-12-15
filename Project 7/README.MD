@@ -14,5 +14,6 @@ go get github.com/joho/godotenv
 go run producer.go
 go run сonsumer_1.go
 go run сonsumer_2.go
+go run сonsumer_3.go
 go run reader.go
 ```

@@ -43,16 +43,16 @@ func main() {
 
 	
 	// Создание группы для стрима "mystream"
-	//client.XGroupDestroy(ctx, "mystream", "group-2")
-	client.XGroupCreate(ctx, "mystream", "group-2", "0")
-	client.XGroupCreateConsumer(ctx, "mystream", "group-2", "consumer-1")
+	//client.XGroupDestroy(ctx, "mystream", "group-3")
+	client.XGroupCreate(ctx, "mystream", "group-3", "0")
+	client.XGroupCreateConsumer(ctx, "mystream", "group-3", "consumer-1")
 
 
 	// Чтение сообщений из стрима "mystream" группой "mygroup"
 	for {
 		// Чтение сообщений из стрима "mystream" группой "mygroup"
 		streams, err := client.XReadGroup(ctx, &redis.XReadGroupArgs{
-			Group:    "group-2",
+			Group:    "group-3",
 			Consumer: "consumer-1",
 			Streams:  []string{"mystream", ">"},
 			Block:    0,
@@ -65,18 +65,18 @@ func main() {
 			return
 		}
 
-		// Обработка и подтверждение полученных сообщений
+		// Удаление полученных сообщений
 		for _, stream := range streams {
 			for _, message := range stream.Messages {
 				fmt.Printf("Stream: %s, ID: %s, Message: %s\n", stream.Stream, message.ID, message.Values["message"])
 
 				// Подтверждение получения сообщения
-				ackCmd := client.XAck(ctx, "mystream", "group-2", message.ID)
-				if err := ackCmd.Err(); err != nil {
-					fmt.Println("Error acknowledging message:", err)
+				delCmd := client.XDel(ctx, "mystream", message.ID)
+				if err := delCmd.Err(); err != nil {
+					fmt.Println("Error deleting message:", err)
 					return
 				}
-				fmt.Printf("Message %s acknowledged\n", message.ID)
+				fmt.Printf("Message %s deleting\n", message.ID)
 			}
 		}
 
