@@ -12,6 +12,5 @@ go get github.com/gofiber/fiber/v2
 #### Start:
 
 ```
-go run subscriber.go
-go run publisher.go
+go run .
 ```
