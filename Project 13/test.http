@@ -1,0 +1,13 @@
+GET http://localhost:3000
+Accept: */*
+
+
+###
+POST  http://localhost:3000/
+Accept: */*
+Content-Type: application/json
+
+{
+    "name":"Tomas",
+    "email":"tomas@mail.com"
+}

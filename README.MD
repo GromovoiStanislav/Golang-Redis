@@ -12,3 +12,4 @@
 - 10 - Redis Pub/Sub simple examples
 - 11 - Redis Pub/Sub example
 - 12 - Caching using Redis and Fiber
+- 13 - Redis Pub/Sub in Fiber
