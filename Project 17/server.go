@@ -136,9 +136,9 @@ func broadcast() {
 		for message := range messages {
 			from := strings.Split(message.Payload, ":")[0]
 			// 3. Если сообщение получено на канале Redis, рассылка его всем подключенным сессиям (пользователям)
-			for user, peer := range Users {
+			for user, conn := range Users {
 				if from != user {
-					peer.WriteMessage(websocket.TextMessage, []byte(message.Payload))
+					conn.WriteMessage(websocket.TextMessage, []byte(message.Payload))
 				}
 			}
 		}
