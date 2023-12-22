@@ -24,15 +24,14 @@ func main() {
 	defer redisClient.Close()
 
 	// Проверка подключения к Redis
-	_, err := redisClient.Ping(ctx).Result()
+	err := redisClient.Ping(ctx).Err()
 	if err != nil {
 		log.Println("Error connecting to Redis:", err)
 		return
 	}
-
+	log.Println("Redis is working....")
 
 	hllandset()
-	
 }
 
 
