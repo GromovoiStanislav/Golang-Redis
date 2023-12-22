@@ -21,14 +21,19 @@ go get github.com/joho/godotenv
 ```bash
 # Connecting to the Redis server
 go run cmd/connect/connect.go
+
 # Adding data to the cache
 go run cmd/set/set.go
+
 # Reading data from the cache
 go run cmd/get/get.go
+
 # Updating data in the cache
 go run cmd/update/update.go
+
 # Deleting data from the cache
 go run cmd/delete/delete.go
+
 # Putting it all together
 go run cmd/demo/demo.go
 ```
