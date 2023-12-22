@@ -17,3 +17,4 @@
 - 15 - Redis simple examples
 - 16 - Using Redis in Go simple examples
 - 17 - Real Time Chat with Gorilla/WebSocket and Redis
+- 18 - Hyperloglog and how does it differ from a Set
