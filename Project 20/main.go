@@ -25,6 +25,8 @@ func main() {
 }
 
 func initRouter(database *db.Database) *gin.Engine {
+	gin.SetMode(gin.ReleaseMode)
+	
 	r := gin.Default()
 	
 	r.GET("/points/:username", func (c *gin.Context) {
