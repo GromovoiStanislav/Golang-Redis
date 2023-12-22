@@ -1,0 +1,56 @@
+###
+POST  http://localhost:3000/scores 
+Content-Type: application/json
+
+{"nickname": "steven", "steps": 2125}
+
+###
+POST  http://localhost:3000/scores 
+Content-Type: application/json
+
+{"nickname": "john", "steps": 300}
+
+###
+POST  http://localhost:3000/scores 
+Content-Type: application/json
+
+{"nickname": "jane", "steps": 1426}
+
+###
+POST  http://localhost:3000/scores 
+Content-Type: application/json
+
+{"nickname": "francis", "steps": 765}
+
+###
+POST  http://localhost:3000/scores 
+Content-Type: application/json
+
+{"nickname": "doe", "steps": 923}
+
+###
+POST  http://localhost:3000/scores 
+Content-Type: application/json
+
+{"nickname": "mary", "steps": 654}
+
+###
+POST  http://localhost:3000/scores 
+Content-Type: application/json
+
+{"nickname": "mark", "steps": 958}
+
+###
+POST  http://localhost:3000/scores 
+Content-Type: application/json
+
+{"nickname": "peter", "steps": 1456}
+
+
+
+
+### Set the start and stop indices to 0 and -1 respectively to return all records.
+GET http://localhost:3000/scores?start=0&stop=-1
+
+### to retrieve only the first 3 records, run the command with a start index of 0 and a stop index of 2
+GET http://localhost:3000/scores?start=0&stop=2

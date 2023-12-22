@@ -20,3 +20,4 @@
 - 18 - Hyperloglog and how does it differ from a Set
 - 19 - Redis List Queue example
 - 20 - Redis and Gin leaderboard API
+- 21 - Redis leaderboard API
