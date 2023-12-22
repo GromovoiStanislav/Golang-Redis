@@ -1,4 +1,4 @@
-## Redis
+## Using Redis in Go examples:
 
 - 1 - Redis Pub/Sub simple example
 - 2 - Redis examples
@@ -19,3 +19,4 @@
 - 17 - Real Time Chat with Gorilla/WebSocket and Redis
 - 18 - Hyperloglog and how does it differ from a Set
 - 19 - Redis List Queue example
+- 20 - Redis and Gin leaderboard API

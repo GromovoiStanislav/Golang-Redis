@@ -1,0 +1,37 @@
+POST  http://localhost:3000/points
+Content-Type: application/json
+
+{
+    "username": "mchl",
+     "points": 20
+}
+
+###
+POST  http://localhost:3000/points
+Content-Type: application/json
+
+{
+    "username": "isa",
+     "points": 25
+}
+
+###
+POST  http://localhost:3000/points
+Content-Type: application/json
+
+{
+    "username": "jude",
+     "points": 22
+}
+
+
+###
+GET http://localhost:3000/leaderboard
+
+
+###
+GET http://localhost:3000/points/isa
+###
+GET http://localhost:3000/points/mchl
+###
+GET http://localhost:3000/points/jude
