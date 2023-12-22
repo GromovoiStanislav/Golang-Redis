@@ -1,0 +1,16 @@
+## Redis List Queue example
+
+#### Setup:
+
+```
+go mod init redis-examples
+go get github.com/redis/go-redis/v9
+go get github.com/joho/godotenv
+```
+
+#### Start:
+
+```
+go run client.go
+go run server.go
+```
