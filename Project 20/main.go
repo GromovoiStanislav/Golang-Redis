@@ -68,4 +68,3 @@ func initRouter(database *db.Database) *gin.Engine {
 
 	return r
 }
-
