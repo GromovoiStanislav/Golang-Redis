@@ -21,3 +21,4 @@
 - 19 - Redis List Queue example
 - 20 - Redis and Gin leaderboard API
 - 21 - Redis leaderboard API
+- 22 - Redis client example
