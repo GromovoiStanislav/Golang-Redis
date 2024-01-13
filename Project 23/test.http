@@ -1,0 +1,16 @@
+###
+GET http://localhost:3000/users
+Accept: */*
+Cache-Control: no-cache
+
+
+
+###
+POST http://localhost:3000/users
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+  "name": "tomas"
+}
