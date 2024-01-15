@@ -13,7 +13,6 @@ func UsersHandler(w http.ResponseWriter, r *http.Request) {
     switch r.Method {
     case "GET":
         var ctx = context.Background()
-
 		red := redisconn.GetRedisConnection()
 
         res, err := red.Get(ctx, "user").Result()
@@ -30,9 +29,8 @@ func UsersHandler(w http.ResponseWriter, r *http.Request) {
         defer r.Body.Close()
        
 		var ctx = context.Background()
-
-	
 		red := redisconn.GetRedisConnection()
+
         _, err = red.SetNX(ctx,"user", body, 60*time.Second).Result()
         if err != nil {
             w.Write([]byte("Error!"))

@@ -23,3 +23,4 @@
 - 21 - Redis leaderboard API
 - 22 - Redis client example
 - 23 - Redis and HTTP-server simple example
+- 24 - Redis connection example
