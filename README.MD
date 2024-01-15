@@ -22,4 +22,4 @@
 - 20 - Redis and Gin leaderboard API
 - 21 - Redis leaderboard API
 - 22 - Redis client example
-- 23 - Redis anf Fiber simple example
+- 23 - Redis and HTTP-server simple example

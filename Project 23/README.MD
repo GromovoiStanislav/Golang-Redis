@@ -1,4 +1,4 @@
-## Redis anf Fiber simple example
+## Redis and HTTP-server simple example
 
 #### Setup:
 
